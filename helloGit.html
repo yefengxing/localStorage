@@ -1,13 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    Git is a version control system.
-    Git is free software.
+    Git is a version control system. Git is free software.
+    <script>
+        // 数组去重
+        function delRepeat(arr) {
+            var result = [] , len = arr.length;
+            for (i = 0; i < len; i++) {
+                for (j = i + 1; j < len; j++) {
+                    if (arr[i] === arr[j]) {
+                        j = ++i;
+                    }
+                }
+                result.push(arr[i]);
+            }
+            return result;
+        }
+            console.log(delRepeat([1, 1, 2,3,3,4,5]));
+            // 贪心算法
+            function maxProfit(arr) {
+               if (arr.length == 0 || arr == null) return 0;
+               var minPrice = arr[0];
+               var sumPrice = 0;
+               for (var i = 1; i < arr.length; i++) {
+                   if (minPrice < arr[i]){
+                       sumPrice += arr[i] - minPrice;
+                       minPrice = arr[i];
+                   } else {
+                       minPrice = arr[i];
+                   }
+               }
+               return sumPrice;
+            }
+            console.log(maxProfit([7,1,5,3,6,4]));
+            //  旋转数组
+            function rotate(arr, k) {
+                var result = new Array(arr.length);
+                for (var i = 0; i < arr.length; i++) {
+                    result[(i + k) % arr.length] = arr[i]; 
+                }
+                return result;
+            }
+            console.log(rotate([1,2,3,4],3))
+            // 旋转数组
+            function rotate1(arr, k) {
+                var length = arr.length;
+                while (k > 0) {
+                    var t = 0;
+                    t = arr[length - 1];
+                    for (var j = length -2; j >=0; j--) {
+                        arr[j + 1] = arr[j];
+                    }
+                    arr[0] = t;
+                    k--;
+                }
+                return arr;
+            }
+            console.log(rotate1([1,2,3,4],2))
+            // 存在重复
+            function containDuplicate (arr) {
+                arr.sort();
+                for (var i = 0; i < arr.length - 1; i++) {
+                    if (arr[i] ==arr[i + 1]) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } 
+            }
+            // 只出现一次数字
+            function singleNumber (arr) {
+                var count = 0;
+                for (var i = 0; i<arr.length; i++) {
+                    for (var j = 0; j<arr.length; j++) {
+                        if (arr[i] == arr[j]) {
+                            count++;
+                        }
+                    }
+                    if (count == 1) {
+                        return arr[i];
+                    } else {
+                        count = 0;
+                    }
+                }
+                return 0;
+            }
+    </script>
 </body>
+
 </html>
